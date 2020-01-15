@@ -148,13 +148,13 @@ fi
 
 if [[ ("$ADVANCED" == "y" || "$ADVANCED" == "Y") ]]; then
 
-USER=northern
+USER=Astracoin
 
 adduser $USER --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password > /dev/null
 
 INSTALLERUSED="#Used Advanced Install"
 
-echo "" && echo 'Added user "northern"' && echo ""
+echo "" && echo 'Added user "Astracoin"' && echo ""
 sleep 1
 
 else
@@ -254,18 +254,13 @@ bind=${IP}:6942
 masternodeaddr=${IP}
 masternodeprivkey=${KEY}
 masternode=1
-addnode=207.246.69.246
-addnode=209.250.233.104
-addnode=45.77.82.101
-addnode=138.68.167.127
-addnode=45.77.218.53
-addnode=207.246.86.118
-addnode=128.199.44.28
-addnode=139.59.164.167
-addnode=139.59.177.56
-addnode=206.189.58.89
-addnode=207.154.202.113
-addnode=140.82.54.227
+addnode=155.138.213.33:4144
+addnode=144.202.28.165:4144
+addnode=94.30.28.121:4144
+addnode=94.30.28.121:4145
+addnode=109.180.143.3:4144
+addnode=155.138.160.37:4144
+addnode=51.68.198.137:4144
 EOL
 chmod 0600 $USERHOME/.Astracoin/Astracoin.conf
 chown -R $USER:$USER $USERHOME/.Astracoin
