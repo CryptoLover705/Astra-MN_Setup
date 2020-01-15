@@ -55,7 +55,7 @@ case $key in
     -h|--help)
     cat << EOL
 
-NORT Masternode installer arguments:
+TR3B Masternode installer arguments:
 
     -n --normal               : Run installer in normal mode
     -a --advanced             : Run installer in advanced mode
@@ -83,8 +83,8 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 clear
 
 # Set these to change the version of northern to install
-TARBALLURL="https://github.com/northern-community/Northern/releases/download/3.0.0/northern_linux.3_0_0.tar.gz"
-TARBALLNAME="northern_linux.3_0_0.tar.gz"
+TARBALLURL="https://github.com/CryptoLover705/astra-wallets/releases/download/1.0.0.0/Astralinux.zip"
+TARBALLNAME="Astralinux.zip"
 BOOTSTRAPURL=""
 BOOTSTRAPARCHIVE=""
 BWKVERSION="1.0.0"
@@ -131,7 +131,7 @@ echo "
  |               installation method.               |::
  |                                                  |::
  |  Otherwise, your masternode will not work, and   |::
- | the NORT Team CANNOT assist you in repairing  |::
+ | the Astra Team CANNOT assist you in repairing  |::
  |         it. You will have to start over.         |::
  |                                                  |::
  +------------------------------------------------+::
@@ -220,26 +220,26 @@ if [[ ("$UFW" == "y" || "$UFW" == "Y" || "$UFW" == "") ]]; then
   yes | ufw enable
 fi
 
-# Install NORT daemon
+# Install TR3B daemon
 wget $TARBALLURL
 tar -xzvf $TARBALLNAME 
 rm $TARBALLNAME
-mv ./northernd /usr/local/bin
-mv ./northern-cli /usr/local/bin
-mv ./northern-tx /usr/local/bin
+mv ./Astracoind /usr/local/bin
+mv ./Astracoin-cli /usr/local/bin
+mv ./Astracoin-tx /usr/local/bin
 rm -rf $TARBALLNAME
 
-# Create .northern directory
-mkdir $USERHOME/.northern
+# Create .Astracoin directory
+mkdir $USERHOME/.Astracoin
 
 # Install bootstrap file
 if [[ ("$BOOTSTRAP" == "y" || "$BOOTSTRAP" == "Y" || "$BOOTSTRAP" == "") ]]; then
   echo "skipping"
 fi
 
-# Create northern.conf
-touch $USERHOME/.northern/northern.conf
-cat > $USERHOME/.northern/northern.conf << EOL
+# Create Astracoin.conf
+touch $USERHOME/.Astracoin/Astracoin.conf
+cat > $USERHOME/.Astracoin/Astracoin.conf << EOL
 ${INSTALLERUSED}
 rpcuser=${RPCUSER}
 rpcpassword=${RPCPASSWORD}
@@ -267,27 +267,27 @@ addnode=206.189.58.89
 addnode=207.154.202.113
 addnode=140.82.54.227
 EOL
-chmod 0600 $USERHOME/.northern/northern.conf
-chown -R $USER:$USER $USERHOME/.northern
+chmod 0600 $USERHOME/.Astracoin/Astracoin.conf
+chown -R $USER:$USER $USERHOME/.Astracoin
 
 sleep 1
 
-cat > /etc/systemd/system/northern.service << EOL
+cat > /etc/systemd/system/Astracoin.service << EOL
 [Unit]
-Description=northernd
+Description=Astracoind
 After=network.target
 [Service]
 Type=forking
 User=${USER}
 WorkingDirectory=${USERHOME}
-ExecStart=/usr/local/bin/northernd -conf=${USERHOME}/.northern/northern.conf -datadir=${USERHOME}/.northern
-ExecStop=/usr/local/bin/northern-cli -conf=${USERHOME}/.northern/northern.conf -datadir=${USERHOME}/.northern stop
+ExecStart=/usr/local/bin/Astracoind -conf=${USERHOME}/.Astracoin/Astracoin.conf -datadir=${USERHOME}/.Astracoin
+ExecStop=/usr/local/bin/Astracoin-cli -conf=${USERHOME}/.Astracoin/Astracoin.conf -datadir=${USERHOME}/.Astracoin stop
 Restart=on-abort
 [Install]
 WantedBy=multi-user.target
 EOL
-sudo systemctl enable northern.service
-sudo systemctl start northern.service
+sudo systemctl enable Astracoin.service
+sudo systemctl start Astracoin.service
 
 clear
 
