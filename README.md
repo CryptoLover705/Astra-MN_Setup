@@ -97,7 +97,7 @@ cd /usr/local/bin
 ###  https://discord.gg/xT84n4T
 
 
-## For Windows setups, use this config in your masternode.conf or northern.conf (depending on if you are using a VPS or local wallet)
+## For Windows setups, use this config in your masternode.conf or Astracoin.conf (depending on if you are using a VPS or local wallet)
 
 ```bash
 rpcuser=<RANDOMUSERNAME>
